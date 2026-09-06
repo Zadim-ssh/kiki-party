@@ -44,111 +44,57 @@
     padding: 0 20px;
   }
 
-  /* ---------- BANNER HERO (30-40% Высоты Экрана) ---------- */
-  .hero-banner-section {
-    position: relative;
-    width: 100%;
-    min-height: 38vh; /* Баннер на ~35-40% высоты экрана */
-    background: var(--black) url('banner.jpg') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 24px 20px;
-    color: var(--white);
-    border-bottom: 4px solid var(--pink);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  /* ---------- HERO & BANNER (30-40% ЭКРАНА С ПОЛНОЙ ЧИТАЕМОСТЬЮ) ---------- */
+  .hero {
+    padding: 20px 0 30px;
     perspective: 1000px;
-    overflow: hidden;
   }
 
-  /* Тёмный оверлей для идеальной читаемости текста поверх фоновой картинки */
-  .hero-banner-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(17,17,17,0.75) 0%, rgba(17,17,17,0.92) 100%);
-    z-index: 1;
-  }
-
-  .banner-content {
+  /* Интерактивный контейнер афиши */
+  .banner-container {
     position: relative;
-    z-index: 2;
-    max-width: var(--container);
-    margin: 0 auto;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.15s ease-out;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--black);
+    border: 3px solid var(--black);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.18), 0 8px 0px var(--pink);
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.25s ease;
   }
 
-  /* Плашки-теги (АКТАУ, 18+, ЗАКРЫТАЯ) как в PDF */
-  .banner-tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
+  /* Сам баннер — отображается полностью без срезов текста */
+  .banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
   }
-  .tag {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 900;
-    padding: 5px 12px;
-    border-radius: 99px;
-    text-transform: uppercase;
-  }
-  .tag-pink { background: var(--pink); color: var(--white); }
-  .tag-white { background: var(--white); color: var(--black); }
-  .tag-outline { border: 1px solid rgba(255,255,255,0.4); color: var(--white); }
 
-  /* Центр баннера */
-  .banner-main {
-    margin: 20px 0;
-    text-align: left;
-  }
-  .banner-sub {
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--pink);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .banner-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(2.2rem, 7vw, 3.8rem);
-    font-weight: 900;
-    line-height: 0.95;
-    text-transform: uppercase;
+  /* Интерактивная плашка-Overlay снизу баннера */
+  .banner-interactive-bar {
+    background: var(--black);
     color: var(--white);
-    text-shadow: 2px 2px 0px var(--pink);
-  }
-
-  /* Нижняя плашка со списком элементов */
-  .banner-footer {
+    padding: 12px 16px;
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.85);
-    border-top: 1px solid rgba(255,255,255,0.2);
-    padding-top: 12px;
-  }
-  .banner-footer span {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 4px;
+    border-top: 2px solid var(--pink);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.75rem;
   }
-  .banner-footer span::before {
-    content: "✦";
-    color: var(--pink);
+  .banner-interactive-bar .tag-pink {
+    background: var(--pink);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 900;
   }
 
-  /* Мета-карточки под баннером */
+  /* Карточки с информацией под баннером */
   .hero-meta {
-    margin-top: 20px;
+    margin-top: 18px;
     display: flex;
     gap: 10px;
   }
@@ -157,7 +103,7 @@
     background: var(--white);
     border: 2px solid var(--black);
     color: var(--black);
-    padding: 10px 12px;
+    padding: 10px;
     border-radius: 14px;
     font-family: 'Unbounded', sans-serif;
     font-size: 0.85rem;
@@ -315,41 +261,30 @@
 </head>
 <body>
 
-  <!-- BANNER AS BACKGROUND (30-40% OF PAGE) -->
-  <header class="hero-banner-section" id="heroBanner">
+  <!-- HERO SECTION WITH FULL READABLE BANNER -->
+  <section class="hero wrap">
     <h1 class="visually-hidden">KIKI PARTY — 25 сентября, Актау</h1>
 
-    <div class="banner-content" id="bannerContent">
-      <div class="banner-tags">
-        <span class="tag tag-pink">АКТАУ</span>
-        <span class="tag tag-white">18+</span>
-        <span class="tag tag-outline">7 ПЯТНИЦ</span>
-      </div>
-
-      <div class="banner-main">
-        <p class="banner-sub">ГЛАВНАЯ ВЕЧЕРИНКА ОСЕНИ</p>
-        <div class="banner-title">KIKI PARTY</div>
-      </div>
-
-      <div class="banner-footer">
-        <span>DJ SET</span>
-        <span>LIVE SHOW</span>
-        <span>КИСЛО-СЛАДКИЙ</span>
-        <span>DJ JAKAKHAN</span>
+    <!-- Чёткая афиша с 3D интерактивным эффектом -->
+    <div class="banner-container" id="interactiveBanner">
+      <img class="banner-img" src="banner.jpg" alt="KIKI PARTY 25 Сентября Актау - Кисло-Сладкий, DJ Jakakhan">
+      
+      <div class="banner-interactive-bar">
+        <span>7 ПЯТНИЦ / HIDE</span>
+        <span class="tag-pink">25 СЕНТЯБРЯ</span>
       </div>
     </div>
-  </header>
 
-  <!-- CONTENT WRAPPER -->
-  <main class="wrap">
-    
-    <!-- META INFO -->
+    <!-- МЕТА-КАРТОЧКИ -->
     <div class="hero-meta">
       <div>25 СЕНТ <span>Пятница</span></div>
       <div>START <span>До утра</span></div>
-      <div>7 ПЯТНИЦ <span>Location</span></div>
+      <div>АКТАУ <span>7 Пятниц</span></div>
     </div>
+  </section>
 
+  <!-- CONTENT -->
+  <main class="wrap">
     <!-- ABOUT -->
     <section class="about">
       <p class="eyebrow">KIKI PARTY</p>
@@ -384,7 +319,6 @@
         <a href="https://pay.kaspi.kz/pay/zy9gqtwe" class="cta" target="_blank" rel="noopener noreferrer">Забронировать билет</a>
       </div>
     </section>
-
   </main>
 
   <!-- FOOTER -->
@@ -399,24 +333,23 @@
     </div>
   </footer>
 
-  <!-- INTERACTIVE PARALLAX TILT SCRIPT -->
+  <!-- 3D TILT EFFECT SCRIPT -->
   <script>
-    const banner = document.getElementById('heroBanner');
-    const content = document.getElementById('bannerContent');
+    const banner = document.getElementById('interactiveBanner');
 
     banner.addEventListener('mousemove', (e) => {
       const rect = banner.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
       
-      const rotateX = (y / (rect.height / 2)) * -6;
-      const rotateY = (x / (rect.width / 2)) * 6;
+      const rotateX = (y / (rect.height / 2)) * -8;
+      const rotateY = (x / (rect.width / 2)) * 8;
 
-      content.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+      banner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
     });
 
     banner.addEventListener('mouseleave', () => {
-      content.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      banner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
     });
   </script>
 </body>
