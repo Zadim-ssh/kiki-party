@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI PARTY — 25 сентября</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark:     #0D0D12;
+    --card-bg:     #16161F;
+    --pink-neon:   #FF2E93;
+    --purple-glow: #8B00FF;
+    --pink-soft:   rgba(255, 46, 147, 0.15);
+    --white:       #FFFFFF;
+    --text-muted:  #A0A0B0;
+
+    --fs-display: clamp(2.5rem, 8vw, 4.5rem);
+    --fs-h2:      clamp(1.8rem, 5vw, 2.8rem);
+    --fs-h3:      clamp(1.2rem, 3vw, 1.6rem);
+    --fs-body:    1.05rem;
+    --fs-small:   0.85rem;
+
+    --container:  560px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--bg-dark);
+    background-image: url('background.jpg');
+    background-repeat: repeat;
+    background-size: 320px auto;
+    background-blend-mode: overlay;
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow {
+    font-size: var(--fs-small);
+    letter-spacing: 0.2em;
+    color: var(--pink-neon);
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    background: var(--pink-neon);
+    box-shadow: 0 0 10px var(--pink-neon);
+  }
+
+  /* ---------- HERO & INTERACTIVE BANNER ---------- */
+  .hero {
+    position: relative;
+    padding: 40px 0 60px;
+    text-align: center;
+    perspective: 1000px;
+  }
+
+  .banner-card {
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(255, 46, 147, 0.25), 0 0 30px rgba(139, 0, 255, 0.2);
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+
+  .banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    pointer-events: none;
+  }
+
+  /* Парящие свечения поверх баннера */
+  .banner-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.2) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .banner-card:hover::after {
+    opacity: 1;
+  }
+
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .hero-meta div {
+    background: var(--card-bg);
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-meta span {
+    display: block;
+    font-size: var(--fs-small);
+    font-family: 'Manrope', sans-serif;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    padding: 60px 0;
+  }
+  .about h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: var(--fs-h2);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #FFF 30%, var(--pink-neon) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .about p {
+    margin-top: 18px;
+    color: var(--text-muted);
+    font-size: var(--fs-body);
+  }
+
+  /* ---------- DETAILS ---------- */
+  .details {
+    background: var(--card-bg);
+    padding: 40px 28px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+  }
+  .details h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: var(--fs-h3);
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: var(--fs-body);
+  }
+  .feature-list li:first-child { border-top: none; }
+  .feature-list .mark {
+    color: var(--pink-neon);
+    text-shadow: 0 0 8px var(--pink-neon);
+  }
+
+  /* ---------- TICKET ---------- */
+  .ticket-section {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .ticket-section .eyebrow { justify-content: center; margin-bottom: 12px; }
+
+  .ticket-card {
+    margin-top: 32px;
+    background: linear-gradient(180deg, rgba(22,22,31,0.9) 0%, rgba(13,13,18,0.9) 100%);
+    border-radius: 32px;
+    padding: 36px 28px;
+    border: 1px solid var(--pink-neon);
+    box-shadow: 0 0 35px rgba(255, 46, 147, 0.2);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .ticket-card .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ticket-card h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.4rem;
+  }
+  .ticket-card .price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--pink-neon);
+    text-shadow: 0 0 12px rgba(255, 46, 147, 0.6);
+  }
+
+  .cta {
+    display: block;
+    margin-top: 28px;
+    background: linear-gradient(90deg, var(--pink-neon), var(--purple-glow));
+    color: var(--white);
+    text-align: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 18px 24px;
+    border-radius: 99px;
+    box-shadow: 0 10px 25px rgba(255, 46, 147, 0.4);
+    transition: all 0.3s ease;
+  }
+  .cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 46, 147, 0.6);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .footer-links a {
+    padding: 10px 20px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: var(--fs-small);
+    transition: background 0.2s;
+  }
+  .footer-links a:hover {
+    background: var(--pink-soft);
+    border-color: var(--pink-neon);
+  }
+
+  .visually-hidden { display: none; }
+</style>
+</head>
+<body>
+
+  <section class="hero wrap">
+    <h1 class="visually-hidden">KIKI PARTY — 25 сентября, Актау</h1>
+
+    <div class="banner-card" id="interactiveBanner">
+      <img class="banner-img" src="banner.jpg" alt="KIKI PARTY Banner">
+    </div>
+
+    <div class="hero-meta">
+      <div>25 СЕНТ<span>Пятница</span></div>
+      <div>7 ПЯТНИЦ<span>Актау</span></div>
+    </div>
+  </section>
+
+  <section class="about wrap">
+    <p class="eyebrow">KIKI PARTY</p>
+    <h2>Самое яркое утро этой осени</h2>
+    <p>KIKI PARTY — событие для тех, кто не хочет отпускать лето по календарю. Музыка, свет и атмосфера будут расти всю ночь, чтобы вместе встретить лучший рассвет года.</p>
+  </section>
+
+  <section class="wrap">
+    <div class="details">
+      <h3>Что вас ждёт</h3>
+      <ul class="feature-list">
+        <li><span class="mark">✦</span> DJ-сет всю ночь напролёт</li>
+        <li><span class="mark">✦</span> Фотозона для лучших кадров</li>
+        <li><span class="mark">✦</span> Выступление: Кисло-Сладкий & DJ Jakakhan</li>
+        <li><span class="mark">✦</span> Дресс-код: Light & Bright</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ticket-section wrap" id="tickets">
+    <p class="eyebrow">ВХОДНОЙ БИЛЕТ</p>
+    <div class="ticket-card">
+      <div class="price-row">
+        <h3>KIKI PASS</h3>
+        <span class="price">10 000 ₸</span>
+      </div>
+      <ul class="feature-list" style="margin-top: 20px;">
+        <li><span class="mark">✦</span> Доступ ко всем зонам</li>
+        <li><span class="mark">✦</span> Шоу-программа 18+</li>
+      </ul>
+      <a href="https://pay.kaspi.kz/pay/zy9gqtwe" class="cta" target="_blank" rel="noopener noreferrer">Забронировать место</a>
+    </div>
+  </section>
+
+  <footer class="footer wrap">
+    <p style="font-family: 'Unbounded'; font-weight:700;">KIKI PARTY</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/kiki_partys/" target="_blank">Instagram</a>
+      <a href="https://wa.me/77474154998" target="_blank">WhatsApp</a>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.8rem;">25 сентября · 7 ПЯТНИЦ / HIDE</p>
+  </footer>
+
+  <script>
+    const banner = document.getElementById('interactiveBanner');
+
+    banner.addEventListener('mousemove', (e) => {
+      const rect = banner.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -12;
+      const rotateY = ((x - centerX) / centerX) * 12;
+
+      banner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      banner.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+      banner.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+    });
+
+    banner.addEventListener('mouseleave', () => {
+      banner.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  </script>
+</body>
+</html>
