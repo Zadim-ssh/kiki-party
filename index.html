@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIKI PARTY — 25 сентября</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:       #FF3D78;
+    --pink-light: #FFF0F5;
+    --white:      #FFFFFF;
+    --black:      #111111;
+    --black-soft: #1E1E24;
+    --gray:       #666666;
+
+    --fs-display: clamp(2.2rem, 8vw, 4.2rem);
+    --fs-h2:      clamp(1.6rem, 5vw, 2.4rem);
+    --fs-h3:      clamp(1.2rem, 3.5vw, 1.5rem);
+    --fs-body:    1.05rem;
+    --fs-small:   0.85rem;
+
+    --container:  580px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-anchor: none; }
+  body {
+    overflow-anchor: none;
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--white);
+    background-image: url('background.jpg');
+    background-repeat: repeat;
+    background-size: 380px auto;
+    color: var(--black);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- MARQUEE (БЕГУЩАЯ СТРОКА) ---------- */
+  .marquee-bar {
+    background: var(--pink);
+    color: var(--white);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--black);
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 16s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ---------- HERO BANNER (full-bleed, no effects, no crop) ---------- */
+  .hero {
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+
+  /* На широких экранах даём баннеру чуть больше воздуха по ширине,
+     раз он теперь портретный */
+  @media (min-width: 700px) {
+    .hero { max-width: 680px; }
+  }
+
+  .poster-banner {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ---------- EVENT INFO STRIP (под баннером, как в pdf) ---------- */
+  .info-strip {
+    padding: 18px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+  }
+  .info-strip div {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--black);
+    border-right: 1px solid rgba(0,0,0,0.12);
+  }
+  .info-strip div:last-child { border-right: none; }
+  .info-strip span {
+    display: block;
+    margin-top: 4px;
+    font-family: 'Manrope', sans-serif;
+    font-size: var(--fs-small);
+    font-weight: 700;
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about { padding: 36px 0 40px; }
+  .eyebrow {
+    font-size: var(--fs-small);
+    letter-spacing: 0.15em;
+    color: var(--pink);
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 18px;
+    height: 3px;
+    background: var(--pink);
+    border-radius: 2px;
+  }
+  .about h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: var(--fs-h2);
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--black);
+    margin-top: 8px;
+  }
+  .about h2 span { color: var(--pink); }
+  .about p {
+    margin-top: 14px;
+    color: var(--gray);
+    font-size: var(--fs-body);
+    font-weight: 500;
+  }
+
+  /* ---------- DETAILS ---------- */
+  .details {
+    background: var(--pink-light);
+    border: 2px solid var(--pink);
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+  .details h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: var(--fs-h3);
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-size: var(--fs-body);
+    font-weight: 700;
+    color: var(--black);
+  }
+  .feature-list li:first-child { border-top: none; }
+  .feature-list .mark { color: var(--pink); font-size: 1.2rem; }
+
+  /* ---------- TICKETS ---------- */
+  .ticket-section {
+    padding: 50px 0 30px;
+    text-align: center;
+  }
+  .ticket-section .eyebrow { justify-content: center; }
+
+  .ticket-card {
+    margin-top: 18px;
+    background: var(--white);
+    border: 3px solid var(--black);
+    border-radius: 20px;
+    padding: 20px 18px;
+    box-shadow: 6px 6px 0px var(--pink);
+    text-align: left;
+  }
+  .ticket-card .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ticket-card h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.05rem;
+  }
+  .ticket-card .price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--pink);
+  }
+  .ticket-card .feature-list li {
+    padding: 8px 0;
+    font-size: 0.92rem;
+  }
+
+  .cta {
+    display: block;
+    margin-top: 16px;
+    background: var(--pink);
+    color: var(--white);
+    text-align: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 13px;
+    border-radius: 14px;
+    border: 2px solid var(--black);
+    box-shadow: 3px 3px 0px var(--black);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--black);
+    background: #e02f66;
+  }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  .cta-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    background: var(--white);
+    color: var(--black);
+    text-align: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 13px;
+    border-radius: 14px;
+    border: 2px solid var(--black);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .cta-whatsapp:hover {
+    background: var(--pink-light);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    padding: 40px 0;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    margin-top: 40px;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .footer-links a {
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: var(--pink);
+    color: var(--white);
+    font-weight: 700;
+    font-size: var(--fs-small);
+  }
+
+  .visually-hidden { display: none; }
+
+  @media (max-width: 600px) {
+    .info-strip div { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      ✦ KIKI PARTY ✦ 25 СЕНТЯБРЯ ✦ АКТАУ ✦ 7 ПЯТНИЦ ✦ КИСЛО-СЛАДКИЙ ✦ DJ JAKAKHAN ✦ KIKI PARTY ✦ 25 СЕНТЯБРЯ ✦ АКТАУ ✦ 7 ПЯТНИЦ ✦ КИСЛО-СЛАДКИЙ ✦ DJ JAKAKHAN ✦
+    </div>
+  </div>
+
+  <!-- HERO BANNER: full image, never cropped, scales with screen width -->
+  <section class="hero">
+    <h1 class="visually-hidden">KIKI PARTY — 25 сентября, Актау</h1>
+    <img
+      class="poster-banner"
+      src="banner-portrait.jpg"
+      width="1400"
+      height="2203"
+      alt="KIKI PARTY — афиша мероприятия"
+      loading="eager"
+      fetchpriority="high">
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="wrap">
+    <div class="info-strip">
+      <div>25 СЕНТ <span>Пятница</span></div>
+      <div>START <span>До утра</span></div>
+      <div>7 ПЯТНИЦ <span>Location</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about wrap">
+    <p class="eyebrow">KIKI PARTY</p>
+    <h2>Яркое событие <span>этой осени</span></h2>
+    <p>KIKI PARTY — это современный event-проект, объединяющий музыку, людей и визуальную эстетику. Мы создаём полноценный experience, где важна каждая деталь.</p>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="wrap">
+    <div class="details">
+      <h3>Что вас ждёт</h3>
+      <ul class="feature-list">
+        <li><span class="mark">✦</span> DJ-сет всю ночь напролёт</li>
+        <li><span class="mark">✦</span> Атмосферная фотозона</li>
+        <li><span class="mark">✦</span> Выступление: Кисло-Сладкий & DJ Jakakhan</li>
+        <li><span class="mark">✦</span> Dress Code: Light & Bright</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="ticket-section wrap" id="tickets">
+    <p class="eyebrow">ВХОДНОЙ БИЛЕТ</p>
+    <div class="ticket-card">
+      <div class="price-row">
+        <h3>STANDARD PASS</h3>
+        <span class="price">10 000 ₸</span>
+      </div>
+      <ul class="feature-list" style="margin-top: 16px;">
+        <li><span class="mark">✦</span> Полное погружение в атмосферу KIKI PARTY</li>
+        <li><span class="mark">✦</span> Шоу-программа и выступления артистов</li>
+        <li><span class="mark">✦</span> Доступ ко всем зонам (18+)</li>
+      </ul>
+      <a href="https://pay.kaspi.kz/pay/zy9gqtwe" class="cta" target="_blank" rel="noopener noreferrer">Забронировать билет</a>
+
+      <p class="cta-note">После оплаты пришлите нам чек и фото удостоверения личности (18+) в WhatsApp — это нужно для подтверждения брони.</p>
+      <a
+        href="https://wa.me/77474154998?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B8%D0%BB%20%D0%B1%D0%B8%D0%BB%D0%B5%D1%82%20%D0%BD%D0%B0%20KIKI%20PARTY%2025%20%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F.%20%D0%9E%D1%82%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%20%D1%87%D0%B5%D0%BA%20%D0%B8%20%D1%83%D0%B4%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D1%81%D1%82%D0%B8:"
+        class="cta-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer">
+        Отправить в WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <p style="font-family: 'Unbounded'; font-size: 1.2rem;">KIKI PARTY</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/kiki_partys/" target="_blank">Instagram</a>
+        <a href="https://wa.me/77474154998" target="_blank">WhatsApp</a>
+      </div>
+      <p style="color: #888; font-size: 0.85rem;">25 сентября · 7 ПЯТНИЦ / HIDE</p>
+    </div>
+  </footer>
+
+  <script>
+    // Открывать страницу всегда сверху (с баннера), а не с сохранённой
+    // прошлой позиции скролла или места, куда её "доскроллил" браузер.
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('pageshow', function () {
+      window.scrollTo(0, 0);
+    });
+  </script>
+
+</body>
+</html>
